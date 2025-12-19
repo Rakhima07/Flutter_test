@@ -1,0 +1,105 @@
+[
+  {
+    "text": "Какой язык используется во Flutter?",
+    "options": ["Java", "Kotlin", "Dart", "Swift"],
+    "correctIndex": 2,
+    "topic": "dart"
+  },
+  {
+    "text": "Что такое null safety в Dart?",
+    "options": [
+      "Запрет использования null",
+      "Механизм защиты от null-ошибок",
+      "Тип данных",
+      "Библиотека"
+    ],
+    "correctIndex": 1,
+    "topic": "dart"
+  },
+  {
+    "text": "Что делает ключевое слово async?",
+    "options": [
+      "Создаёт поток",
+      "Позволяет использовать await",
+      "Запускает изолят",
+      "Блокирует код"
+    ],
+    "correctIndex": 1,
+    "topic": "dart"
+  },
+
+  {
+    "text": "Чем StatelessWidget отличается от StatefulWidget?",
+    "options": [
+      "Stateless не имеет состояния",
+      "Stateful нельзя обновлять",
+      "Stateless тяжелее",
+      "Разницы нет"
+    ],
+    "correctIndex": 0,
+    "topic": "widgets"
+  },
+  {
+    "text": "Какой метод вызывается при перестроении UI?",
+    "options": ["initState()", "dispose()", "build()", "setState()"],
+    "correctIndex": 2,
+    "topic": "widgets"
+  },
+  {
+    "text": "Для чего используется setState()?",
+    "options": [
+      "Создание виджета",
+      "Обновление состояния и UI",
+      "Навигация",
+      "Работа с API"
+    ],
+    "correctIndex": 1,
+    "topic": "widgets"
+  },
+
+  {
+    "text": "Для чего используется файл pubspec.yaml?",
+    "options": [
+      "Описание UI",
+      "Настройка навигации",
+      "Подключение зависимостей и assets",
+      "Хранение данных"
+    ],
+    "correctIndex": 2,
+    "topic": "project"
+  },
+  {
+    "text": "Где указываются assets в проекте Flutter?",
+    "options": [
+      "main.dart",
+      "AndroidManifest.xml",
+      "pubspec.yaml",
+      "lib/assets"
+    ],
+    "correctIndex": 2,
+    "topic": "project"
+  },
+
+  {
+    "text": "Что такое MVVM?",
+    "options": [
+      "Язык программирования",
+      "Фреймворк",
+      "Архитектурный паттерн",
+      "Библиотека UI"
+    ],
+    "correctIndex": 2,
+    "topic": "architecture"
+  },
+  {
+    "text": "Для чего используется Navigator?",
+    "options": [
+      "Работа с HTTP",
+      "Навигация между экранами",
+      "Управление состоянием",
+      "Работа с JSON"
+    ],
+    "correctIndex": 1,
+    "topic": "architecture"
+  }
+]

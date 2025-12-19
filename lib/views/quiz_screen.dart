@@ -14,12 +14,19 @@ class QuizScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_) => QuizViewModel()
-        ..loadQuestions(
-          QuestionService.getQuestionsBySubject(subject),
-        ),
+      create: (_) => QuizViewModel(),
       child: Consumer<QuizViewModel>(
         builder: (context, vm, _) {
+
+          if (vm.questions.isEmpty) {
+            QuestionService.getQuestionsBySubject(subject)
+                .then(vm.loadQuestions);
+
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+
           if (vm.isFinished) {
             return ResultScreen(result: vm.result);
           }
@@ -47,18 +54,24 @@ class QuizScreen extends StatelessWidget {
                   const SizedBox(height: 24),
                   ...List.generate(
                     question.options.length,
-                    (index) {
-                      return Card(
-                        child: ListTile(
-                          title: Text(question.options[index]),
-                          onTap: vm.isAnswered
-    ? null
-    : () {
-        vm.answer(index);
-      },
-                        ),
-                      );
-                    },
+                    (index) => Card(
+                      child: ListTile(
+                        title: Text(question.options[index]),
+                        onTap: vm.isAnswered
+                            ? null
+                            : () => vm.answer(index),
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: vm.isAnswered
+                          ? vm.nextQuestion
+                          : null,
+                      child: const Text('Следующий вопрос'),
+                    ),
                   ),
                 ],
               ),
@@ -69,3 +82,4 @@ class QuizScreen extends StatelessWidget {
     );
   }
 }
+
