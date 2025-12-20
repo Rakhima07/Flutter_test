@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/result.dart';
 import 'subject_screen.dart';
+import 'splash_screen.dart';
 
 class ResultScreen extends StatelessWidget {
   final Result result;
@@ -10,7 +11,7 @@ class ResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Результат')),
+      appBar: AppBar(title: const Text('Результат')),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -19,31 +20,50 @@ class ResultScreen extends StatelessWidget {
             children: [
               Text(
                 'Правильных ответов: ${result.correctAnswers}',
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 'Процент: ${result.percentage.toStringAsFixed(0)}%',
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
+
               Text(
-                result.isPassed ? 'Тест пройден' : 'Тест не пройден',
+                result.description,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: result.isPassed ? Colors.green : Colors.red,
+                  color: result.isPassed ? Colors.green : Colors.orange,
                 ),
               ),
-              SizedBox(height: 32),
+
+              const SizedBox(height: 32),
+
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  child: Text('Пройти снова'),
+                  child: const Text('Пройти ещё раз'),
                   onPressed: () {
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(builder: (_) => SubjectScreen()),
+                      (route) => false,
+                    );
+                  },
+                ),
+              ),
+
+              const SizedBox(height: 16),
+
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                  child: const Text('На главную'),
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (_) => SplashScreen()),
                       (route) => false,
                     );
                   },
