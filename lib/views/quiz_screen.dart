@@ -6,22 +6,34 @@ import '../viewmodels/quiz_viewmodel.dart';
 import '../services/question_service.dart';
 import 'result_screen.dart';
 
-class QuizScreen extends StatelessWidget {
+class QuizScreen extends StatefulWidget {
   final String subject;
 
   const QuizScreen({super.key, required this.subject});
 
   @override
+  State<QuizScreen> createState() => _QuizScreenState();
+}
+
+class _QuizScreenState extends State<QuizScreen> {
+  late QuizViewModel vm;
+
+  @override
+  void initState() {
+    super.initState();
+    vm = QuizViewModel();
+
+    QuestionService.getQuestionsBySubject(widget.subject)
+        .then(vm.loadQuestions);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => QuizViewModel(),
+    return ChangeNotifierProvider.value(
+      value: vm,
       child: Consumer<QuizViewModel>(
         builder: (context, vm, _) {
-
           if (vm.questions.isEmpty) {
-            QuestionService.getQuestionsBySubject(subject)
-                .then(vm.loadQuestions);
-
             return const Scaffold(
               body: Center(child: CircularProgressIndicator()),
             );
@@ -52,18 +64,40 @@ class QuizScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
+
+                  // 🔵 ВАРИАНТЫ ОТВЕТОВ
                   ...List.generate(
                     question.options.length,
-                    (index) => Card(
-                      child: ListTile(
-                        title: Text(question.options[index]),
-                        onTap: vm.isAnswered
-                            ? null
-                            : () => vm.answer(index),
-                      ),
-                    ),
+                    (index) {
+                      final bool isSelected =
+                          vm.selectedIndex == index;
+
+                      return Card(
+                        color: isSelected
+                            ? Colors.blue.shade100
+                            : null,
+                        child: ListTile(
+                          title: Text(
+                            question.options[index],
+                            style: TextStyle(
+                              color: isSelected
+                                  ? Colors.blue.shade900
+                                  : null,
+                              fontWeight: isSelected
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                            ),
+                          ),
+                          onTap: vm.isAnswered
+                              ? null
+                              : () => vm.answer(index),
+                        ),
+                      );
+                    },
                   ),
+
                   const Spacer(),
+
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -82,4 +116,3 @@ class QuizScreen extends StatelessWidget {
     );
   }
 }
-

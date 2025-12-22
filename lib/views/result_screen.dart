@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter/views/test_description_screen.dart';
 import '../models/result.dart';
-import 'subject_screen.dart';
 import 'splash_screen.dart';
+
 
 class ResultScreen extends StatelessWidget {
   final Result result;
@@ -47,7 +48,7 @@ class ResultScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (_) => SubjectScreen()),
+                      MaterialPageRoute(builder: (_) => const TestDescriptionScreen(subject: 'Flutter',)),
                       (route) => false,
                     );
                   },

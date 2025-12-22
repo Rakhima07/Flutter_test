@@ -8,12 +8,14 @@ class QuizViewModel extends ChangeNotifier {
   int _currentIndex = 0;
   int _correctAnswers = 0;
   bool _isAnswered = false;
+  int? _selectedIndex;
 
   List<Question> get questions => _questions;
   int get currentIndex => _currentIndex;
   int get correctAnswers => _correctAnswers;
   bool get isAnswered => _isAnswered;
-
+  int? get selectedIndex => _selectedIndex;
+  
   void loadQuestions(List<Question> questions) {
     _questions
       ..clear()
@@ -36,6 +38,7 @@ class QuizViewModel extends ChangeNotifier {
   void answer(int selectedIndex) {
     if (_isAnswered) return;
 
+    _selectedIndex = selectedIndex;
     _isAnswered = true;
 
     if (_questions[_currentIndex].correctIndex == selectedIndex) {
@@ -50,7 +53,7 @@ class QuizViewModel extends ChangeNotifier {
 
     _currentIndex++;
     _isAnswered = false;
-
+    _selectedIndex = null;
     notifyListeners();
   }
 
