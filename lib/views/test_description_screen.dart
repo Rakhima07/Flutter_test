@@ -8,10 +8,8 @@ class TestDescriptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     final TextStyle rulesTextStyle = const TextStyle(fontSize: 20);
 
-    
     final List<String> points = [
       'Тест состоит из 10 вопросов',
       'Один правильный ответ',
@@ -33,10 +31,12 @@ class TestDescriptionScreen extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            ...points.map((point) => Padding(
-                  padding: const EdgeInsets.only(bottom: 5),
-                  child: Text('• $point', style: rulesTextStyle),
-                )),
+            ...points.map(
+              (point) => Padding(
+                padding: const EdgeInsets.only(bottom: 5),
+                child: Text('• $point', style: rulesTextStyle),
+              ),
+            ),
 
             const Spacer(),
 

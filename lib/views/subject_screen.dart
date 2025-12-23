@@ -13,17 +13,12 @@ class SubjectScreen extends StatelessWidget {
         child: Column(
           children: subjects.map((subject) {
             return Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 4.0,
-              ), 
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 50),
-                  alignment: Alignment
-                      .centerLeft, 
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16,
-                  ), 
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.symmetric(horizontal: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),

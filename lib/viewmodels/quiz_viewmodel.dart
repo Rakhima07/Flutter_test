@@ -49,7 +49,7 @@ class QuizViewModel extends ChangeNotifier {
   }
 
   Result get result => Result(
-        correctAnswers: _correctAnswers,
-        totalQuestions: _questions.length,
-      );
+    correctAnswers: _correctAnswers,
+    totalQuestions: _questions.length,
+  );
 }
