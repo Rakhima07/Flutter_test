@@ -1,105 +1,122 @@
 [
   {
-    "text": "Какой язык используется во Flutter?",
-    "options": ["Java", "Kotlin", "Dart", "Swift"],
+    "text": "Что произойдёт, если попытаться изменить значение final переменной?",
+    "options": [
+      "Значение изменится",
+      "Появится warning",
+      "Произойдёт ошибка компиляции",
+      "Изменение будет проигнорировано"
+    ],
     "correctIndex": 2,
+    "subject": "Flutter",
     "topic": "dart"
   },
   {
-    "text": "Что такое null safety в Dart?",
+    "text": "В чём основная разница между final и const?",
     "options": [
-      "Запрет использования null",
-      "Механизм защиты от null-ошибок",
-      "Тип данных",
-      "Библиотека"
+      "final используется только в классах",
+      "const вычисляется во время компиляции",
+      "final нельзя использовать с коллекциями",
+      "const можно изменить позже"
     ],
     "correctIndex": 1,
+    "subject": "Flutter",
     "topic": "dart"
   },
   {
-    "text": "Что делает ключевое слово async?",
+    "text": "Что означает тип Future<int>?",
     "options": [
-      "Создаёт поток",
-      "Позволяет использовать await",
-      "Запускает изолят",
-      "Блокирует код"
+      "Сразу возвращает int",
+      "Возвращает поток данных",
+      "Асинхронно возвращает int",
+      "Не возвращает значение"
     ],
-    "correctIndex": 1,
+    "correctIndex": 2,
+    "subject": "Flutter",
     "topic": "dart"
   },
-
   {
-    "text": "Чем StatelessWidget отличается от StatefulWidget?",
+    "text": "В чём ключевое отличие StatelessWidget от StatefulWidget?",
     "options": [
-      "Stateless не имеет состояния",
-      "Stateful нельзя обновлять",
-      "Stateless тяжелее",
+      "Stateless нельзя перерисовать",
+      "Stateful не хранит состояние",
+      "Stateful имеет отдельный класс State",
       "Разницы нет"
     ],
-    "correctIndex": 0,
-    "topic": "widgets"
-  },
-  {
-    "text": "Какой метод вызывается при перестроении UI?",
-    "options": ["initState()", "dispose()", "build()", "setState()"],
     "correctIndex": 2,
+    "subject": "Flutter",
     "topic": "widgets"
   },
   {
-    "text": "Для чего используется setState()?",
+    "text": "Когда оправдано использование StatefulWidget?",
     "options": [
-      "Создание виджета",
-      "Обновление состояния и UI",
-      "Навигация",
-      "Работа с API"
+      "Когда UI не меняется",
+      "Когда данные могут изменяться",
+      "Всегда по умолчанию",
+      "Только для навигации"
     ],
     "correctIndex": 1,
+    "subject": "Flutter",
     "topic": "widgets"
   },
-
   {
-    "text": "Для чего используется файл pubspec.yaml?",
+    "text": "Какую роль выполняет метод build()?",
     "options": [
-      "Описание UI",
-      "Настройка навигации",
-      "Подключение зависимостей и assets",
-      "Хранение данных"
+      "Загружает данные",
+      "Создаёт UI на основе состояния",
+      "Управляет навигацией",
+      "Сохраняет данные"
     ],
-    "correctIndex": 2,
+    "correctIndex": 1,
+    "subject": "Flutter",
+    "topic": "widgets"
+  },
+  {
+    "text": "Зачем указывать assets в pubspec.yaml?",
+    "options": [
+      "Для ускорения приложения",
+      "Для доступа к файлам во время выполнения",
+      "Для подключения Firebase",
+      "Для сборки Android"
+    ],
+    "correctIndex": 1,
+    "subject": "Flutter",
     "topic": "project"
   },
   {
-    "text": "Где указываются assets в проекте Flutter?",
+    "text": "Какой способ используется для загрузки JSON из assets?",
     "options": [
-      "main.dart",
-      "AndroidManifest.xml",
-      "pubspec.yaml",
-      "lib/assets"
+      "http.get()",
+      "File()",
+      "rootBundle.loadString()",
+      "SharedPreferences"
     ],
     "correctIndex": 2,
+    "subject": "Flutter",
     "topic": "project"
   },
-
   {
-    "text": "Что такое MVVM?",
+    "text": "Какую ответственность несёт ViewModel в MVVM?",
     "options": [
-      "Язык программирования",
-      "Фреймворк",
-      "Архитектурный паттерн",
-      "Библиотека UI"
+      "Отрисовку UI",
+      "Навигацию",
+      "Бизнес-логику и состояние",
+      "Хранение виджетов"
     ],
     "correctIndex": 2,
+    "subject": "Flutter",
     "topic": "architecture"
   },
   {
-    "text": "Для чего используется Navigator?",
+    "text": "Почему бизнес-логику не рекомендуется размещать в UI?",
     "options": [
-      "Работа с HTTP",
-      "Навигация между экранами",
-      "Управление состоянием",
-      "Работа с JSON"
+      "UI станет медленнее",
+      "Код сложнее тестировать и масштабировать",
+      "Flutter это запрещает",
+      "Проект не соберётся"
     ],
     "correctIndex": 1,
+    "subject": "Flutter",
     "topic": "architecture"
   }
 ]

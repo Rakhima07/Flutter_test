@@ -23,8 +23,9 @@ class _QuizScreenState extends State<QuizScreen> {
     super.initState();
     vm = QuizViewModel();
 
-    QuestionService.getQuestionsBySubject(widget.subject)
-        .then(vm.loadQuestions);
+    QuestionService.getQuestionsBySubject(
+      widget.subject,
+    ).then(vm.loadQuestions);
   }
 
   @override
@@ -65,46 +66,44 @@ class _QuizScreenState extends State<QuizScreen> {
                   ),
                   const SizedBox(height: 24),
 
-                  // 🔵 ВАРИАНТЫ ОТВЕТОВ
-                  ...List.generate(
-                    question.options.length,
-                    (index) {
-                      final bool isSelected =
-                          vm.selectedIndex == index;
+                  ...List.generate(question.options.length, (index) {
+                    final bool isSelected = vm.selectedIndex == index;
 
-                      return Card(
-                        color: isSelected
-                            ? Colors.blue.shade100
-                            : null,
-                        child: ListTile(
-                          title: Text(
-                            question.options[index],
-                            style: TextStyle(
-                              color: isSelected
-                                  ? Colors.blue.shade900
-                                  : null,
-                              fontWeight: isSelected
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,
-                            ),
+                    return Card(
+                      color: isSelected ? Colors.blue.shade100 : null,
+                      child: ListTile(
+                        title: Text(
+                          question.options[index],
+                          style: TextStyle(
+                            color: isSelected ? Colors.blue.shade900 : null,
+                            fontWeight: isSelected
+                                ? FontWeight.bold
+                                : FontWeight.normal,
                           ),
-                          onTap: vm.isAnswered
-                              ? null
-                              : () => vm.answer(index),
                         ),
-                      );
-                    },
-                  ),
+                        onTap: () {
+                          vm.selectAnswer(index);
+                        },
+                      ),
+                    );
+                  }),
 
                   const Spacer(),
 
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: vm.isAnswered
-                          ? vm.nextQuestion
-                          : null,
-                      child: const Text('Следующий вопрос'),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 50),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 50,
+                      child: ElevatedButton(
+                        onPressed: vm.selectedIndex != null
+                            ? vm.nextQuestion
+                            : null,
+                        child: const Text(
+                          'Следующий вопрос',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
                     ),
                   ),
                 ],

@@ -8,21 +8,42 @@ class SubjectScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Выберите предмет")),
-      body: ListView.builder(
-        itemCount: subjects.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(subjects[index]),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => TestDescriptionScreen(subject: subjects[index]),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: subjects.map((subject) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 4.0,
+              ), 
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(double.infinity, 50),
+                  alignment: Alignment
+                      .centerLeft, 
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16,
+                  ), 
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
-              );
-            },
-          );
-        },
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => TestDescriptionScreen(subject: subject),
+                    ),
+                  );
+                },
+                child: Text(
+                  subject,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                ),
+              ),
+            );
+          }).toList(),
+        ),
       ),
     );
   }

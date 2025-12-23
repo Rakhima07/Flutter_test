@@ -8,6 +8,18 @@ class TestDescriptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    final TextStyle rulesTextStyle = const TextStyle(fontSize: 20);
+
+    
+    final List<String> points = [
+      'Тест состоит из 10 вопросов',
+      'Один правильный ответ',
+      'Возврат к предыдущим вопросам невозможен',
+      'Результат отображается сразу',
+      '80% и выше — тест пройден',
+    ];
+
     return Scaffold(
       appBar: AppBar(title: Text(subject)),
       body: Padding(
@@ -15,29 +27,38 @@ class TestDescriptionScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Описание теста',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16),
-            Text('• Тест состоит из 10 вопросов'),
-            Text('• Один правильный ответ'),
-            Text('• Возврат к предыдущим вопросам невозможен'),
-            Text('• Результат отображается сразу'),
-            Text('• 80% и выше — тест пройден'),
-            Spacer(),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                child: Text('Начать тест'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => QuizScreen(subject: subject),
-                    ),
-                  );
-                },
+            const SizedBox(height: 24),
+
+            ...points.map((point) => Padding(
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Text('• $point', style: rulesTextStyle),
+                )),
+
+            const Spacer(),
+
+            Padding(
+              padding: const EdgeInsets.only(bottom: 50),
+              child: SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    textStyle: const TextStyle(fontSize: 20),
+                  ),
+                  child: const Text('Начать тест'),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => QuizScreen(subject: subject),
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
           ],

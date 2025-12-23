@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_flutter/views/test_description_screen.dart';
 import '../models/result.dart';
-import 'splash_screen.dart';
-
+import 'subject_screen.dart';
 
 class ResultScreen extends StatelessWidget {
   final Result result;
@@ -43,12 +42,19 @@ class ResultScreen extends StatelessWidget {
 
               SizedBox(
                 width: double.infinity,
+                height: 50,
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    textStyle: const TextStyle(fontSize: 20),
+                  ),
                   child: const Text('Пройти ещё раз'),
                   onPressed: () {
                     Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (_) => const TestDescriptionScreen(subject: 'Flutter',)),
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            const TestDescriptionScreen(subject: 'Flutter'),
+                      ),
                       (route) => false,
                     );
                   },
@@ -59,12 +65,16 @@ class ResultScreen extends StatelessWidget {
 
               SizedBox(
                 width: double.infinity,
+                height: 50,
                 child: OutlinedButton(
+                  style: ElevatedButton.styleFrom(
+                    textStyle: const TextStyle(fontSize: 20),
+                  ),
                   child: const Text('На главную'),
                   onPressed: () {
                     Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (_) => SplashScreen()),
+                      MaterialPageRoute(builder: (_) => SubjectScreen()),
                       (route) => false,
                     );
                   },

@@ -7,15 +7,17 @@ class QuizViewModel extends ChangeNotifier {
 
   int _currentIndex = 0;
   int _correctAnswers = 0;
-  bool _isAnswered = false;
   int? _selectedIndex;
 
   List<Question> get questions => _questions;
   int get currentIndex => _currentIndex;
   int get correctAnswers => _correctAnswers;
-  bool get isAnswered => _isAnswered;
   int? get selectedIndex => _selectedIndex;
-  
+
+  Question get currentQuestion => _questions[_currentIndex];
+
+  bool get isFinished => _currentIndex >= _questions.length;
+
   void loadQuestions(List<Question> questions) {
     _questions
       ..clear()
@@ -23,41 +25,28 @@ class QuizViewModel extends ChangeNotifier {
 
     _currentIndex = 0;
     _correctAnswers = 0;
-    _isAnswered = false;
+    _selectedIndex = null;
 
     notifyListeners();
   }
 
-  Question get currentQuestion => _questions[_currentIndex];
-
-  double get progress {
-    if (_questions.isEmpty) return 0;
-    return (_currentIndex + 1) / _questions.length;
-  }
-
-  void answer(int selectedIndex) {
-    if (_isAnswered) return;
-
-    _selectedIndex = selectedIndex;
-    _isAnswered = true;
-
-    if (_questions[_currentIndex].correctIndex == selectedIndex) {
-      _correctAnswers++;
-    }
-
+  void selectAnswer(int index) {
+    _selectedIndex = index;
     notifyListeners();
   }
 
   void nextQuestion() {
-    if (!_isAnswered) return;
+    if (_selectedIndex == null) return;
+
+    if (_questions[_currentIndex].correctIndex == _selectedIndex) {
+      _correctAnswers++;
+    }
 
     _currentIndex++;
-    _isAnswered = false;
     _selectedIndex = null;
+
     notifyListeners();
   }
-
-  bool get isFinished => _currentIndex >= _questions.length;
 
   Result get result => Result(
         correctAnswers: _correctAnswers,
